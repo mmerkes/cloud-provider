@@ -103,7 +103,7 @@ func GetNodeAddressesFromNodeIPLegacy(nodeIP net.IP, cloudNodeAddresses []v1.Nod
 // providers, because kubelet does not set the `provided-node-ip` annotation in that
 // case.)
 func GetNodeAddressesFromNodeIP(providedNodeIP string, cloudNodeAddresses []v1.NodeAddress) ([]v1.NodeAddress, error) {
-	nodeIPs, err := nodeutil.ParseNodeIPAnnotation(providedNodeIP)
+	nodeIPs, err := nodeutil.ParseNodeIPAnnotation(providedNodeIP, true)
 	if err != nil {
 		return nil, fmt.Errorf("failed to parse node IP %q: %v", providedNodeIP, err)
 	}
